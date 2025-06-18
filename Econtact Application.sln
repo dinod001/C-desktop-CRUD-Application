@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36121.58 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Econtact Application", "Econtact Application\Econtact Application.csproj", "{00B94B28-AF1F-4512-88B8-66FC47CAFAB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00B94B28-AF1F-4512-88B8-66FC47CAFAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B94B28-AF1F-4512-88B8-66FC47CAFAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B94B28-AF1F-4512-88B8-66FC47CAFAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B94B28-AF1F-4512-88B8-66FC47CAFAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAEB5DBE-AC9F-43BB-8BD2-5F5E0BDF90F3}
+	EndGlobalSection
+EndGlobal
