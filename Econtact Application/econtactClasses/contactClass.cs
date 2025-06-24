@@ -54,47 +54,37 @@ namespace Econtact_Application.econtactClasses
         //inserting data into database
         public bool Insert(contactClass c)
         {
-            //step1: Database connection
-            SqlConnection conn = new SqlConnection(myconnString);
             bool isSuccess = false;
+
             try
             {
-                //Step 2 :Writing sql query
-                String sql = "INSERT INTO tbl_contact (FirstName, LastName, ContactNo, Adress, Gender) VALUES (@FirstName,@LastName, @ContactNo, @Adress, @Gender) ";
-
-                //creating sql command using sql and conn
-                SqlCommand cmd = new SqlCommand(sql, conn);
-
-                //creating parameters to add data
-                cmd.Parameters.AddWithValue("@FirstName", c.FirstName);
-                cmd.Parameters.AddWithValue("@LastName", c.LastName);
-                cmd.Parameters.AddWithValue("@ContactNo", c.ContactNo);
-                cmd.Parameters.AddWithValue("@Adress", c.Adress);
-                cmd.Parameters.AddWithValue("@Gender", c.Gender);
-
-                //connection open here
-                conn.Open();
-                int rows=cmd.ExecuteNonQuery();
-
-                if (rows > 0) {
-                    isSuccess = true;
-
-                }
-                else
+                using (SqlConnection conn = new SqlConnection(myconnString))
                 {
-                    isSuccess = false;
-                }
+                    string sql = "INSERT INTO tbl_contact (FirstName, LastName, ContactNo, Adress, Gender) VALUES (@FirstName, @LastName, @ContactNo, @Adress, @Gender)";
 
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@FirstName", c.FirstName);
+                        cmd.Parameters.AddWithValue("@LastName", c.LastName);
+                        cmd.Parameters.AddWithValue("@ContactNo", c.ContactNo);
+                        cmd.Parameters.AddWithValue("@Adress", c.Adress);
+                        cmd.Parameters.AddWithValue("@Gender", c.Gender);
+
+                        conn.Open();
+                        int rows = cmd.ExecuteNonQuery();
+                        isSuccess = rows > 0;
+                    }
+                }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Insert error: " + ex.Message);
+                // Optionally log the error or rethrow
             }
-            finally
-            {
-                conn.Close();
-            }
+
             return isSuccess;
         }
+
 
 
         //Updating data into database
