@@ -145,5 +145,21 @@ namespace Econtact_Application
                 MessageBox.Show("Failed to Delete Contact");
             }
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Search functionality to filter contacts based on the search text
+            string keywords = txtSearch.Text.Trim(); // Get the search keywords from the textbox
+            if (keywords.Length > 0) {
+                DataTable dt = c.Search(keywords); // Call the Search method from contactClass
+                dgvContactList.DataSource = dt; // Bind the search results to the DataGridView
+            }
+            else
+            {
+                // If search text is empty, show all contacts
+                DataTable dt = c.Select();
+                dgvContactList.DataSource = dt;
+            }
+        }
     }
 }

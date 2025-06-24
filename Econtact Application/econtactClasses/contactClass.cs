@@ -175,5 +175,37 @@ namespace Econtact_Application.econtactClasses
             }
             return isSuccess;
         }
+
+        //Method to search data from database
+        public DataTable Search(string keywords)
+        {
+            DataTable dt = new DataTable();
+
+            string sql = @"SELECT * FROM tbl_contact 
+                   WHERE ContactID LIKE @kw 
+                      OR FirstName LIKE @kw 
+                      OR LastName LIKE @kw 
+                      OR ContactNo LIKE @kw 
+                      OR Adress LIKE @kw";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(myconnString))
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sql, conn))
+                {
+                    string paramValue = "%" + keywords + "%";
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@kw", paramValue);
+
+                    sqlDataAdapter.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Optionally log the exception here
+                Console.WriteLine(ex.Message);
+            }
+            return dt;
+        }
+
     }
 }
